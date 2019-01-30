@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
 
+
 android {
+    signingConfigs {
+        config {
+            keyAlias 'myalis'
+            keyPassword '1qaz2wsx3edc'
+            storeFile file('C:/Users/Yan/AndroidStudioProjects/android.jks')
+            storePassword '1qaz2wsx'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.myapplication"
@@ -14,12 +23,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
